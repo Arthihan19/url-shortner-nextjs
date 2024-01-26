@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ShortURL {
+  id        String   @id @db.VarChar(12)
+  longUrl   String
+  createdAt DateTime @default(now())
+  events    Event[]
+}
+
+model Event {
+  id         Int       @id @default(autoincrement())
+  shortURLId String
+  eventType  EventType
+  eventDate  DateTime  @default(now())
+  shortURL   ShortURL  @relation(fields: [shortURLId], references: [id])
+
+  @@index([eventType])
+}
+
+enum EventType {
+  CLICK
+  REJECT
+  SUCCESS
+}
