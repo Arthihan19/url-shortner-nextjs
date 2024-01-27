@@ -2,7 +2,7 @@ import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/app/auth/Provider";
-import NavBar from "@/app/NavBar";
+import {SiteHeader} from "@/app/components/SiteHeader";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -19,8 +19,8 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
         <html lang="en">
             <body className={inter.className}>
                 <AuthProvider>
-                    <NavBar/>
-                    <main>
+                    <SiteHeader/>
+                    <main className="container flex h-14 max-w-screen-2xl items-center">
                         {children}
                     </main>
                 </AuthProvider>
