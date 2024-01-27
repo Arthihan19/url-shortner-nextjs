@@ -8,8 +8,15 @@ import {Icons} from "@/components/icons"
 import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
 import {Button} from "@/components/ui/button";
 import {ScrollArea} from "@/components/ui/scroll-area";
+import LoginButton from "@/app/components/LoginButton";
+import {Session} from "next-auth";
+import LogoutButton from "@/app/components/LogoutButton";
 
-export function MobileNav() {
+interface Props {
+    session: Session | null;
+}
+
+export function MobileNav(props:Props) {
     const [open, setOpen] = React.useState(false)
 
     return (
@@ -19,7 +26,7 @@ export function MobileNav() {
                     variant="ghost"
                     className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden w-full justify-between items-center"
                 >
-                    <Link href="/public" className="flex items-center space-x-2">
+                    <Link href="/" className="flex items-center space-x-2">
                         <Icons.logo className="h-6 w-6"/>
                         <span className="font-bold text-lg">ShortURL</span>
                     </Link>
@@ -65,7 +72,7 @@ export function MobileNav() {
                 </MobileLink>
                 <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
                     <div className="flex flex-col space-y-3">
-                        {["/dashboard", "/create"].map(
+                        {["/", "/create"].map(
                             (path, index) =>
                                 <MobileLink
                                     key={index}
@@ -75,7 +82,7 @@ export function MobileNav() {
                                     {path === "/create" ? "Create" : "Dashboard"}
                                 </MobileLink>
                         )}
-                        <Button className="w-1/4">Login</Button>
+                        {props.session ? <LogoutButton/> : <LoginButton/>}
                     </div>
                 </ScrollArea>
             </SheetContent>
