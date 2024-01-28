@@ -58,7 +58,7 @@ export default function Create() {
         navigator.clipboard.writeText(text).then(() => {
             toast({
                 title: "Copied to Clipboard",
-                description: "Short URL has been copied to your clipboard.",
+                description: "URL has been copied to your clipboard.",
             });
         }).catch(err => {
             console.error('Failed to copy: ', err);
