@@ -62,8 +62,8 @@ model ShortURL {
   id        String   @id @db.VarChar(12)
   longUrl   String
   createdAt DateTime @default(now())
-  userId    String?
-  user      User?    @relation(fields: [userId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
   events    Event[]
 }
 
