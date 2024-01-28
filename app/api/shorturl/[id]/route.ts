@@ -28,13 +28,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
 
     if (!shortUrl) return NextResponse.json({ error: 'Short URL not found' }, { status: 401 });
 
-    const user = await prisma.user.findUnique({
-        where: { email: session.user!!.email as string},
-    });
-
-    if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 });
-
-    if (shortUrl.userId !== user.id) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    if (shortUrl.userId !== session.user.id) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
 
     await prisma.shortURL.delete({
         where: { id },
