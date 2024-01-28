@@ -3,6 +3,7 @@ import {Inter} from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/app/auth/Provider";
 import {SiteHeader} from "@/app/components/SiteHeader";
+import {Toaster} from "@/components/ui/toaster";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -20,9 +21,10 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
             <body className={inter.className}>
                 <AuthProvider>
                     <SiteHeader/>
-                    <main className="container flex h-14 max-w-screen-2xl items-center">
+                    <main className="container flex max-w-screen-2xl items-center pt-8 justify-center content-center">
                         {children}
                     </main>
+                    <Toaster />
                 </AuthProvider>
             </body>
         </html>

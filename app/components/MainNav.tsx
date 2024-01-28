@@ -1,19 +1,29 @@
 "use client"
 
 import Link from "next/link"
-import {usePathname} from "next/navigation"
+import {redirect, usePathname} from "next/navigation"
 import {cn} from "@/lib/utils"
 import {Icons} from "@/components/icons"
 import {Session} from "next-auth";
 import LogoutButton from "@/app/components/LogoutButton";
 import LoginButton from "@/app/components/LoginButton";
+import {useSession} from "next-auth/react";
+import * as React from "react";
 
 interface Props {
-    session: Session | null;
 }
 
 export function MainNav(props: Props) {
+    const { status, data: session } = useSession();
     const pathname = usePathname();
+
+    const isPathActive = (path: string) => {
+        if (path === "/" && pathname === "/") {
+            return true;
+        }
+
+        return pathname.startsWith(path) && path !== "/";
+    };
 
     return (
         <div className="mr-4 hidden md:flex w-full justify-between items-center">
@@ -28,7 +38,7 @@ export function MainNav(props: Props) {
                         href={path}
                         className={cn(
                             "transition-colors px-2 py-1 rounded hover:bg-gray-100",
-                            pathname === path || pathname?.startsWith(path)
+                            isPathActive(path)
                                 ? "font-semibold text-foreground"
                                 : "text-foreground/60 hover:text-foreground"
                         )}
@@ -36,8 +46,9 @@ export function MainNav(props: Props) {
                         {path === "/create" ? "Create" : "Dashboard"}
                     </Link>
                 ))}
-                {props.session ? <LogoutButton/> : <LoginButton/>}
+                {status === "loading" ? <Icons.spinner className="animate-spin"/> : session ? <LogoutButton/> : <LoginButton/>}
             </nav>
         </div>
     );
 }
+

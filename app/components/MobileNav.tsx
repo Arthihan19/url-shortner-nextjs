@@ -9,14 +9,15 @@ import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
 import {Button} from "@/components/ui/button";
 import {ScrollArea} from "@/components/ui/scroll-area";
 import LoginButton from "@/app/components/LoginButton";
-import {Session} from "next-auth";
 import LogoutButton from "@/app/components/LogoutButton";
+import {useSession} from "next-auth/react";
+import {Skeleton} from "@/components/ui/skeleton";
 
 interface Props {
-    session: Session | null;
 }
 
 export function MobileNav(props:Props) {
+    const { status, data: session } = useSession();
     const [open, setOpen] = React.useState(false)
 
     return (
@@ -82,7 +83,7 @@ export function MobileNav(props:Props) {
                                     {path === "/create" ? "Create" : "Dashboard"}
                                 </MobileLink>
                         )}
-                        {props.session ? <LogoutButton/> : <LoginButton/>}
+                        {status === "loading" ? <Icons.spinner className="animate-spin"/> : session ? <LogoutButton/> : <LoginButton/>}
                     </div>
                 </ScrollArea>
             </SheetContent>
