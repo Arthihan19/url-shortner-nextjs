@@ -21,15 +21,14 @@ For data management, the project utilizes Prisma as an Object-Relational Mapping
 The user interface is developed with Radix-ui components and styled using Tailwind CSS, aiming for a clean and responsive design that enhances user experience across various devices.
 
 
-
-An instance of this is hosted here: TODO
-
-
+An instance of this is hosted here: https://url-shortner-nextjs.vercel.app/
 
 ## Demo
 
-TODO
-
+<img width="1157" alt="Screenshot 2024-02-03 112951" src="https://github.com/Arthihan19/url-shortner-nextjs/assets/106946860/4724a079-320b-4953-9c67-9a0e4c8eadfc">
+<img width="1244" alt="Screenshot 2024-02-03 112959" src="https://github.com/Arthihan19/url-shortner-nextjs/assets/106946860/20fa925e-d20a-4c08-b6f9-4de6cba8f19a">
+<img width="1144" alt="Screenshot 2024-02-03 113015" src="https://github.com/Arthihan19/url-shortner-nextjs/assets/106946860/c8677d1b-23b0-4047-951d-27176c0a7113">
+<img width="1558" alt="Screenshot 2024-02-03 113103" src="https://github.com/Arthihan19/url-shortner-nextjs/assets/106946860/9929efc3-d75b-4ec6-a0c8-da59e2277d22">
 
 ## Tech-stack
 
@@ -208,7 +207,7 @@ enum EventType {
 
 ## Usage
 
-- `git clone TODO`
+- `git clone https://github.com/Arthihan19/url-shortner-nextjs`
 
 - populate the following env variables
   
