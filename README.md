@@ -21,7 +21,7 @@ For data management, the project utilizes Prisma as an Object-Relational Mapping
 The user interface is developed with Radix-ui components and styled using Tailwind CSS, aiming for a clean and responsive design that enhances user experience across various devices.
 
 
-An instance of this is hosted here: https://url-shortner-nextjs.vercel.app/
+An instance of this is hosted here: [https://url-shortner-nextjs.vercel.app/](https://url-shortner-nextjs.vercel.app/auth)
 
 ## Demo
 
